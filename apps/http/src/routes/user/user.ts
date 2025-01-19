@@ -76,11 +76,3 @@ userRouter.post('/signup', async (req: Request, res: Response): Promise<any> => 
     })
 })
 
-userRouter.post("/room", loginMiddleware, async(req: Request, res: Response) :Promise<any> => {
-    //db call
-
-    const roomId = 123
-    return res.status(200).json({
-        msg: roomId
-    })
-})

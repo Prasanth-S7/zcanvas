@@ -21,11 +21,27 @@ model User{
   password String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+  avatar String?
   rooms Room[]
+  chats Chat[]
 }
 
 model Room{
   id String @id@default(uuid())
-  userId String 
+  adminId String 
+  slug String @unique
+  admin User @relation(fields: [adminId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  chats Chat[]
+}
+
+model Chat{
+  id Int @id @default(autoincrement())
+  message String
+  createdAt DateTime @default(now())
+  roomId String
+  room Room @relation(fields: [roomId], references: [id])
+  userId String
   user User @relation(fields: [userId], references: [id])
 }
