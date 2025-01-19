@@ -10,3 +10,7 @@ export const signUpSchema = z.object({
     firstName: z.string().min(3),
     lastName: z.string().min(1)
 })
+
+export const createRoomSchema = z.object({
+    slug: z.string()
+})

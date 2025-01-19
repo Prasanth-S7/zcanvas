@@ -1,47 +1,63 @@
 import { Router, Request, Response } from "express";
 import { loginMiddleware } from "../../middlwares/login";
-import { prisma } from "@repo/db/src";
+import { createRoomSchema } from "@repo/common/zodSchema";
+import { prisma } from "@repo/db/client"
 
-const roomRouter = Router();
+export const roomRouter:Router = Router();
 
-roomRouter.post("/", loginMiddleware, async (req: Request, res: Response): Promise<any> => {
+roomRouter.post(
+  "/",
+  loginMiddleware,
+  async (req: Request, res: Response): Promise<any> => {
     //@ts-ignore
-    const userId = req.userId
-    const room = await prisma.room.create({
-        data:{
-            adminId: userId,
-            slug: "lskdfn,"
+    const parsedData = createRoomSchema.safeParse(req.body);
+    if (!parsedData.success) {
+      return res.status(403).json({
+        msg: "Incorrect inputs",
+      });
+    } else {
+      //@ts-ignore
+      const userId = req.userId;
+      const { slug } = req.body;
+      const room = await prisma.room.create({
+        data: {
+          adminId: userId,
+          slug: slug,
         },
-        select:{
-            id: true
-        }
-    })
+        select: {
+          id: true,
+        },
+      });
 
-    return res.status(200).json({
+      return res.status(200).json({
         msg: "Room created successfully",
-        roomId: room.id
-    })
-})
+        roomId: room.id,
+      });
+    }
+  }
+);
 //get all chats of a particular room
 
-roomRouter.get('/rooms/:slug/chats', async (req: Request, res: Response): Promise<any> => {
-
-    const { slug } = req.params
+roomRouter.get(
+  "/:slug/chats",
+  async (req: Request, res: Response): Promise<any> => {
+    const { slug } = req.params;
     const room = await prisma.room.findFirst({
-        where:{
-            slug: slug
+      where: {
+        slug: slug,
+      },
+      include: {
+        chats: {
+          include: {
+            user: true,
+          },
         },
-        include:{
-            chats : {
-                include: {
-                    user: true
-                }
-            }
-        }
-    })
-    if(!room){
-        return res.status(404).json({
-            msg: "Room not found"
-        })
+      },
+    });
+    if (!room) {
+      return res.status(404).json({
+        msg: "Room not found",
+      });
     }
-})
+  }
+);

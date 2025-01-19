@@ -17,6 +17,7 @@ export async function loginMiddleware(
     const decoded = jwt.verify(token, JWT_SECRET as string);
 
     if (decoded) {
+      console.log(decoded);
       //@ts-ignore
       req.userId = decoded.id;
       next();

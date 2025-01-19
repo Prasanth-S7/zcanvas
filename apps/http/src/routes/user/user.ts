@@ -4,11 +4,11 @@ import { loginMiddleware } from "../../middlwares/login";
 import { JWT_SECRET } from "@repo/common/secrets"
 import { LoginSchema } from "@repo/common/zodSchema"
 import { hashPassword } from "../../utils/hashPassword";
-import { prisma } from "@repo/db/src"
+import { prisma } from "@repo/db/client"
 import bcrypt from "bcrypt"
 
 
-const userRouter = Router();
+export const userRouter:Router = Router();
 
 userRouter.post('/signin', async (req: Request, res: Response): Promise<any> => {
 
@@ -40,7 +40,10 @@ userRouter.post('/signin', async (req: Request, res: Response): Promise<any> => 
     const passwordMatched = await bcrypt.compare(password, storedPassword?.password);
 
     if(passwordMatched){
-        const token = jwt.sign(storedPassword.id, JWT_SECRET)
+        const token = jwt.sign(
+            {
+                id: storedPassword.id
+            }, JWT_SECRET)
         return res.status(200).json({
             msg: "Logged in sucessfully",
             token: token
@@ -70,9 +73,11 @@ userRouter.post('/signup', async (req: Request, res: Response): Promise<any> => 
         }
     })
 
-    const token = jwt.sign(user.id, JWT_SECRET as string)
+    const token = jwt.sign(
+        {
+            id: user.id
+        }, JWT_SECRET as string)
     return res.json({
         token : token
     })
 })
-
