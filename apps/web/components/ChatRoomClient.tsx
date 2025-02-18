@@ -47,7 +47,7 @@ export default function ChatRoomClient({
     const handleSendMessage = () => {
         if (socket && message.trim()) {
             socket.send(JSON.stringify({ type: "chat", message, roomId: id }));
-            setMessage(""); 
+            setMessage("");
             const newMessage = { message }; 
             setLocalChats((prev) => [...prev, newMessage]);
             setChats((prev) => [...prev, newMessage]); 
