@@ -51,7 +51,7 @@ userRouter.post(
           JWT_SECRET
         );
         res.cookie("token", `Bearer ${token}`, {
-          httpOnly: true,
+          httpOnly: false,
           secure: false,
           sameSite: "lax",
         });

@@ -28,10 +28,6 @@ export default function CreateRoom() {
         }
     }
 
-    const handleSignUp = async () => {
-        const res = await axios.post("api/user/signup");
-    }
-
     const [isDialogBoxOpen, setIsDialogBoxOpen] = useState(false);
     const [roomName, setRoomName] = useState("");
 
@@ -41,7 +37,7 @@ export default function CreateRoom() {
     return (
         <div className="absolute w-full top-2 right-2 flex space-x-3 items-center justify-end">
             <button className="bg-blue-400 px-5 py-2 rounded-2xl" onClick={() => setIsDialogBoxOpen((prev) => !prev)}>Create Room</button>
-            <button className="bg-blue-400 px-5 py-2 rounded-2xl" onClick={handleSignUp}>Sign Up/Login</button>
+            <button className="bg-blue-400 px-5 py-2 rounded-2xl" onClick={() => router.push("/login")}>Sign Up/Login</button>
             {
                 isDialogBoxOpen && (
                     <div className="fixed z-50 w-[600px] h-[200px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black text-white p-5 rounded-xl border border-white/10">

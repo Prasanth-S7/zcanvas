@@ -45,8 +45,6 @@ wss.on("connection", (ws, req) => {
     });
   }
   ws.on("message", async (data) => {
-    console.log("reaches this point");
-    console.log(users);
     const parsedData = JSON.parse(data as unknown as string);
     if (parsedData.type === "join-room") {
       console.log("join-room");
