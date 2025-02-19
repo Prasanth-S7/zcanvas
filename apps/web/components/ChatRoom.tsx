@@ -20,7 +20,7 @@ export default function ChatRoom({ id }: { id: string }) {
         };
 
         fetchChats();
-    }, [id]); // Fetch chats when `id` changes
+    }, [id]); 
 
-    return <ChatRoomClient id={id} messages={chats} setChats={setChats} />;
+    return <ChatRoomClient id={id} messages={chats} setChats={setChats}/>;
 }

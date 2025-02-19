@@ -20,7 +20,7 @@ export default function LoginComponent() {
             })
             if(res.status === 200){
                 toast.success("Logged in successfully");
-                router.push("/")
+                router.push("/dashboard")
             }
             else{
                 toast.error("Error logging in");
