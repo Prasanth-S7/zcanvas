@@ -4,13 +4,12 @@ import SignUpButton from "../components/SignUpButton";
 import { MessageSquare, Shield, Zap, Globe, ArrowRight } from 'lucide-react';
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white">
-      {/* Navigation */}
-      <nav className="container mx-auto px-6 py-4">
+    <div className="min-h-screen bg-[#0a0a0a]">
+      <nav className="container mx-auto px-6 py-4 border-b border-white/20">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <MessageSquare className="h-8 w-8 text-indigo-600" />
-            <span className="text-xl font-bold text-gray-900">ChatFlow</span>
+            <span className="text-xl font-bold text-white">ZCanvas</span>
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <a href="#features" className="text-gray-600 hover:text-indigo-600">Features</a>
@@ -21,9 +20,8 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section className="container mx-auto px-6 py-16 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
+        <h1 className="text-5xl md:text-6xl font-bold text-white mb-8">
           Connect and Chat <br />
           <span className="text-indigo-600">Without Limits</span>
         </h1>
@@ -38,10 +36,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="bg-white py-20">
+      <section className="bg-black py-20">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-16">Why Choose ChatFlow?</h2>
+          <h2 className="text-3xl font-bold text-center text-white mb-16">Why Choose zCanvas?</h2>
           <div className="grid md:grid-cols-3 gap-12">
             <div className="text-center">
               <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -68,27 +65,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social Proof */}
-      <section className="container mx-auto px-6 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Industry Leaders</h2>
-          <p className="text-gray-600">Join thousands of satisfied users who love ChatFlow</p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-50">
-          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=200&h=100&fit=crop&q=80" alt="Company logo" className="h-12" />
-          <img src="https://images.unsplash.com/photo-1611162616305-c69b3396c691?w=200&h=100&fit=crop&q=80" alt="Company logo" className="h-12" />
-          <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=200&h=100&fit=crop&q=80" alt="Company logo" className="h-12" />
-          <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=200&h=100&fit=crop&q=80" alt="Company logo" className="h-12" />
-        </div>
-      </section>
-
-      {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-8 md:mb-0">
               <MessageSquare className="h-8 w-8 text-indigo-400" />
-              <span className="text-xl font-bold">ChatFlow</span>
+              <span className="text-xl font-bold">zCanvas</span>
             </div>
             <div className="flex flex-col md:flex-row md:space-x-12 space-y-4 md:space-y-0 text-center md:text-left">
               <a href="#" className="hover:text-indigo-400">Privacy Policy</a>
@@ -97,7 +79,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 ChatFlow. All rights reserved.</p>
+            <p>&copy; 2024 zCanvas. All rights reserved.</p>
           </div>
         </div>
       </footer>
