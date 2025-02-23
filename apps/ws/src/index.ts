@@ -87,5 +87,29 @@ wss.on("connection", (ws, req) => {
         }
       });
     }
+    if(parsedData.type === "shape"){
+      const message = parsedData.message;
+      const roomId = message.roomId;
+      // const shapes = await prisma.shapes.create({
+      //   data:{
+      //     shape: message.shapeDetail,
+      //     userId: userId,
+      //     roomId: roomId
+      //   }
+      // })
+      console.log(message, roomId);
+      console.log("userId here", userId);
+      users.forEach((user) => {
+        if (user.rooms.includes(roomId)) {
+          user.ws.send(
+            JSON.stringify({
+              type: "shape",
+              message: message,
+              roomId,
+            })
+          );
+        }
+      });
+    }
   });
 });

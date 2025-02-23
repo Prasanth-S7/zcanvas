@@ -14,6 +14,7 @@ export default function RoomId() {
     const getRoomId = async () => {
       try {
         const res = await axiosInstance.get(`${BACKEND_URL}/api/v1/room/slug/${slug}`);
+        console.log(res.data.roomId)
         setRoomId(res.data.roomId);
       } catch (error) {
         console.error("Error fetching room ID", error);
@@ -27,7 +28,7 @@ export default function RoomId() {
 
   return (
     <div>
-      <CanvasComponent />
+      <CanvasComponent slug = {slug} roomId = {roomId} />
     </div>
   );
 }
