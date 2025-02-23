@@ -83,7 +83,6 @@ export function mainSketch(p: p5, canvasRef: React.RefObject<HTMLDivElement>, cu
             const shape = parsedData.message;
             if (shape.roomId === roomId) {
                 const shapeDetail = shape.shapeDetail;
-                // Only add to arrays if it's a final shape
                 if (shapeDetail.isFinal) {
                     switch (shapeDetail.type) {
                         case "circle":
@@ -127,7 +126,6 @@ export function mainSketch(p: p5, canvasRef: React.RefObject<HTMLDivElement>, cu
         p.clear();
         p.background(0);
         
-        // Draw all saved shapes
         drawnCircles.forEach((circle) => {
             p.circle(circle.x, circle.y, circle.radius);
         });
@@ -141,7 +139,6 @@ export function mainSketch(p: p5, canvasRef: React.RefObject<HTMLDivElement>, cu
             p.text(text.text, text.x, text.y);
         });
 
-        // Draw the current shape being drawn
         if (mouseClicked && !isTyping && currentShapeRef.current) {
             const currentX = p.mouseX;
             const currentY = p.mouseY;
@@ -167,7 +164,6 @@ export function mainSketch(p: p5, canvasRef: React.RefObject<HTMLDivElement>, cu
 
     const handleMouseMove = (e: MouseEvent) => {
         if (mouseClicked && !isTyping) {
-            // Send preview updates without isFinal flag
             if (currentShapeRef.current?.name === "circle") {
                 sendToSocketServer({
                     type: "circle",
